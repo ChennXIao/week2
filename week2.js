@@ -51,33 +51,57 @@ function calculate_sum_of_bonus(data){
         }
     }
     let bonus = {}
-    for(let i=0;i<a.length;i++){
-        salary = a[i]['salary']
-        let performance = a[i]['performance']
-        let role = a[i]['role']
-        
-        if(performance == "above average" || role == "CEO"){
-            add = salary*0.09
-            bonus[role] = add
-        }else if(performance == "average" || role == "Engineer"){
-            add = salary*0.06
-            bonus[role] = add
-
-        }else if(performance == "below average" || role == "Sales"){
-            add = salary*0.03
-            bonus[role] = add
-
-        }else{
-            add = salary*0.01
-            bonus[role] = add
-            }
-    }    
-    sum  = 0
-    for(let k in bonus){
-        sum = sum+bonus[k]
-    }
-    // console.log(bonus)
-    console.log(sum)
+    while(true){
+        let sum = 10001
+        for(let i=0;i<a.length;i++){
+            salary = a[i]['salary']
+            let performance = a[i]['performance']
+            let role = a[i]['role']
+            
+            if(performance == "above average" || role == "CEO"){
+                if(role in bonus){
+                    bonus[role] = bonus[role]*0.9
+                    console.log("in")
+                
+                }else{               
+                    add = salary*0.09
+                    bonus[role] = add
+                    }
+            }else if(performance == "average" || role == "Engineer"){
+                if(role in bonus){
+                    bonus[role] = bonus[role]*0.9
+                    console.log("in")
+                
+                }else{               
+                    add = salary*0.09
+                    bonus[role] = add
+                    }
+            }else if(performance == "below average" || role == "Sales"){
+                if(role in bonus){
+                    bonus[role] = bonus[role]*0.9
+                    console.log("in")
+                
+                }else{               
+                    add = salary*0.09
+                    bonus[role] = add
+                    }
+            }else{
+                if(role in bonus){
+                    bonus[role] = bonus[role]*0.9
+                    console.log("in")
+                
+                }else{               
+                    add = salary*0.09
+                    bonus[role] = add
+                    }
+                }
+        }  
+    }  
+        for(let k in bonus){
+            sum = sum+bonus[k]
+        }
+        // console.log(bonus)
+        console.log(sum)
 
         
 }
