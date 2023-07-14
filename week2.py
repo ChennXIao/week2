@@ -58,12 +58,11 @@ def calculate_sum_of_bonus(data):
             if performance == "above average" or role == "CEO":
                 if role in bonus:
                     bonus[role] = bonus[role]*0.9
-                    print("in")
-                
+                    
                 else:
                     add = salary*0.09
                     bonus[role] = add
-                    print(bonus)
+
             elif performance == "average" or role == "Engineer":
                 if role in bonus:
                     bonus[role] = bonus[role]*0.9
@@ -86,7 +85,7 @@ def calculate_sum_of_bonus(data):
                     bonus[role] = add
         
         for k,v in bonus.items():
-            print(int(v))
+            # print(int(v))
             bonus[k]=int(v)
             sum = sum+v
     print(int(sum))
@@ -103,7 +102,7 @@ calculate_sum_of_bonus({
 },
 {
 "name":"Bob",
-"salary":1000,
+"salary":6000,
 "performance":"average",
 "role":"CEO"
 },
