@@ -29,7 +29,7 @@ def calculate_sum_of_bonus(data):
 # either CEO or above average performance can get bonus with 9%*salary 
 # either engineer or average performance can get bonus with 6%*salary 
 # either sales or below average performance can get bonus with 3%*salary 
-
+# if sum surpass 10,000 then remove 10% from oringinal bonus until it meet the required standard 
     a = list(data.values())
     a = a[0]
 
@@ -45,45 +45,65 @@ def calculate_sum_of_bonus(data):
             salary = str(salary).replace(",",  "")
             a[i]['salary'] = int(salary)
 
+    
     bonus = {}
-    for i in range(len(a)):
-        salary = a[i]['salary']
-        performance = a[i]['performance']
-        role = a[i]['role']
+    sum = 10001
+    while(sum>10000):
+        sum = 0
+        for i in range(len(a)):
+            salary = a[i]['salary']
+            performance = a[i]['performance']
+            role = a[i]['role']
+            
+            if performance == "above average" or role == "CEO":
+                if role in bonus:
+                    bonus[role] = bonus[role]*0.9
+                    print("in")
+                
+                else:
+                    add = salary*0.09
+                    bonus[role] = add
+                    print(bonus)
+            elif performance == "average" or role == "Engineer":
+                if role in bonus:
+                    bonus[role] = bonus[role]*0.9
+                
+                else:
+                    add = salary*0.06
+                    bonus[role] = add
+            elif performance == "below average" or role == "Sales":
+                if role in bonus:
+                    bonus[role] = bonus[role]*0.9
+                else:
+                    add = salary*0.03
+                    bonus[role] = add
+            else:
+                if role in bonus:
+                    bonus[role] = bonus[role]*0.9
+                
+                else:
+                    add = salary*0.01
+                    bonus[role] = add
         
-        if performance == "above average" or role == "CEO":
-            add = salary*0.09
-            bonus[role] = add
-        elif performance == "average" or role == "Engineer":
-            add = salary*0.06
-            bonus[role] = add
-
-        elif performance == "below average" or role == "Sales":
-            add = salary*0.03
-            bonus[role] = add
-
-        else:
-            add = salary*0.01
-            bonus[role] = add
-
-    sum  = 0
-    for k,v in bonus.items():
-        # print(v)
-        sum = sum+v
-    print(sum)
+        for k,v in bonus.items():
+            print(int(v))
+            bonus[k]=int(v)
+            sum = sum+v
+    print(int(sum))
+    print(bonus)
 
 print("===Task2===")
 calculate_sum_of_bonus({
 "employees":[
 {
 "name":"John",
-"salary":"1000USD",
+"salary":"10000USD",
 "performance":"above average",
 "role":"Engineer"
 },
 {
 "name":"Bob",
-"salary":60000,
+"salary":1000,
 "performance":"average",
 "role":"CEO"
 },
@@ -106,6 +126,7 @@ def func(*data):
 
     left = 0
     right= len(data2)-1
+
     while(True):
         if data2[left][1]==data2[right][1]:
             if len(data2) == 1:
@@ -113,17 +134,15 @@ def func(*data):
 
             else:
                 data2.pop(right)
-                # print(left,"",right)
                 data2.pop(left)
                 left = 0        
                 right= len(data2)-1
-                # print(data)
+                # print(data2)
                 if any(data2) == False:
-
                     break
+                
         elif right ==  left  + 1:
             left= left+1
-            # print("left")
 
         else:
             right = right - 1
@@ -134,8 +153,8 @@ def func(*data):
         print(data2)
 
 print("===Task3===")
-func("彭⼤牆", "王明雅", "吳明") # print 彭⼤牆
-func("郭靜雅", "王立強", "林靜宜", "郭立恆", "林花花") # print 林花花
+func("彭⼤牆", "王明雅", "吳明")
+func("郭靜雅", "王立強", "林靜宜", "郭立恆", "林花花", "林花彩") # print 林花花
 func("郭宣雅", "林靜宜", "郭宣恆", "林靜花") # print 沒有
 
 
@@ -180,7 +199,9 @@ print("===Task5===")
 find_index_of_car([3, 1, 5, 4, 2], [0, 1, 0, 1, 1], 2) # print 4
 find_index_of_car([1, 0, 5, 1, 3], [0, 1, 0, 1, 1], 4) # print -1
 find_index_of_car([4, 6, 5, 8], [0, 1, 1, 1], 4) # print 2
-             
+
+
+
 
 
 
